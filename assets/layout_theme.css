@@ -10077,7 +10077,7 @@ a:focus {
     height: 0;
     width: calc(100% - 60px);
     padding: 0 1px;
-    padding-bottom: calc(1 + $heroCaptionHeight)
+    padding-bottom: calc(1 + heroCaptionHeight);
 }
 
 @media (min-width:768px) {
