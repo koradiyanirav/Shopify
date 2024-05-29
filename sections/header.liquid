@@ -57,7 +57,7 @@
   endfor
 -%}
 
-{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
+<{% if section.settings.sticky_header_type != 'none' %}sticky-header data-sticky-type="{{ section.settings.sticky_header_type }}"{% else %}div{% endif %} class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}">
   {%- liquid
     assign social_links = false
     assign localization_forms = false
@@ -167,7 +167,11 @@
         <path d="M19.762 18.612L15.1 13.951c-.318-.318-.832-.318-1.15 0-.318.317-.318.832 0 1.15l4.661 4.66c.159.16.367.239.575.239.208 0 .416-.08.575-.238.317-.318.317-.832 0-1.15z"></path>
       </g>
     </svg>
+  
+
+
   </div>
+
 </div>
 </span>
           </button>
@@ -1130,7 +1134,7 @@
   </div>
 </div>
 </div>
-{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}
+</{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
 
 {%- if settings.cart_type == "notification" -%}
   {%- render 'cart-notification', color_scheme: section.settings.color_scheme, desktop_menu_type: section.settings.menu_type_desktop -%}
