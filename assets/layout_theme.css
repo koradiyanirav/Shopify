@@ -238,9 +238,6 @@ option {
     color: #000
 }
 
-.clearfix {
-    *zoom: 1
-}
 
 .clearfix:after {
     content: "";
