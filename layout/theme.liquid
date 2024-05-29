@@ -296,7 +296,8 @@ body {
       href="{{ 'tailwind-output.css' | asset_url }}"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="{{ 'tailwind-output.css' | asset_url }}"></noscript>
+    <noscript>
+      <link rel="stylesheet" href="{{ 'tailwind-output.css' | asset_url }}"></noscript>
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
