@@ -97,3 +97,28 @@
 .collection__view-all a:not(.link) {
   margin-top: 1rem;
 }
+
+/* Featured products card UI fixes */
+.product-grid .card-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-grid .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-grid .card__content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-grid .card-information {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
