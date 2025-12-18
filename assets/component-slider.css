@@ -15,10 +15,28 @@ slider-component.slider-component-full-width {
   slider-component.page-width {
     padding: 0 1.5rem;
   }
+
+  slider-component.slider-mobile-gutter,
+  slideshow-component.slider-mobile-gutter {
+    padding: 0 1.5rem;
+  }
 }
 
 @media screen and (min-width: 749px) and (max-width: 990px) {
   slider-component.page-width {
+    padding: 0 5rem;
+  }
+
+  slider-component.slider-mobile-gutter,
+  slideshow-component.slider-mobile-gutter {
+    padding: 0 5rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  slider-component.page-width-desktop,
+  slideshow-component.page-width-desktop {
+    max-width: var(--page-width);
     padding: 0 5rem;
   }
 }
