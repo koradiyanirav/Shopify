@@ -291,6 +291,16 @@ body {
     font-size: 1.6rem;
   }
 }
+
+{% if template.name == 'index' %}
+  body {
+    background-image: url('{{ "homepage-background.jpg" | asset_url }}');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+{% endif %}
     {% endstyle %}
     <script src="https://cdn.tailwindcss.com" defer></script>
 
