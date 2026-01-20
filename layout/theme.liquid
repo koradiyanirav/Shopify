@@ -293,12 +293,11 @@ body {
 }
 
 {% if template.name == 'index' %}
-  body {
-    background-image: url('{{ "bg.jpg" | asset_url }}');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+  /* Body has class "gradient" which sets `background:` in base.css.
+     Use `background:` here (with !important) so bg.jpg actually shows. */
+  body.gradient {
+    background: url('{{ "bg.jpg" | asset_url }}') center / cover no-repeat fixed,
+      var(--gradient-background) !important;
   }
 {% endif %}
     {% endstyle %}
