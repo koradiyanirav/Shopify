@@ -291,15 +291,6 @@ body {
     font-size: 1.6rem;
   }
 }
-
-{% if template.name == 'index' %}
-  /* Body has class "gradient" which sets `background:` in base.css.
-     Use `background:` here (with !important) so bg.jpg actually shows. */
-  body.gradient {
-    background: url('{{ "bg.jpg" | asset_url }}') center / cover no-repeat fixed,
-      var(--gradient-background) !important;
-  }
-{% endif %}
     {% endstyle %}
     <script src="https://cdn.tailwindcss.com" defer></script>
 
