@@ -27,6 +27,26 @@
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
+  #Banner-{{ section.id }} .banner__media--has-hover {
+    position: relative;
+  }
+  #Banner-{{ section.id }} .banner__media-image--hover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  #Banner-{{ section.id }} .banner__media--has-hover:hover .banner__media-image--hover {
+    opacity: 1;
+  }
+  @media (hover: none) {
+    #Banner-{{ section.id }} .banner__media-image--hover {
+      display: none;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -83,15 +103,23 @@
       }}
     </div>
   {%- elsif section.settings.image_2 == blank -%}
-    <div class="banner__media media placeholder{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="banner__media media placeholder banner__media--has-hover{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       <img
         src="{{ 'banner-car-spare-parts.png' | asset_url }}"
         alt="Car spare parts"
-        class="banner__media-image placeholder-svg"
+        class="banner__media-image banner__media-image--base"
         width="1920"
         height="600"
         loading="lazy"
         fetchpriority="{{ fetch_priority }}">
+      <img
+        src="{{ 'banner-car-spare-parts-hover.png' | asset_url }}"
+        alt=""
+        class="banner__media-image banner__media-image--hover"
+        width="1920"
+        height="600"
+        loading="lazy"
+        aria-hidden="true">
     </div>
   {%- endif -%}
   {%- if section.settings.image_2 != blank -%}
