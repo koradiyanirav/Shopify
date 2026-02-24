@@ -28,7 +28,6 @@
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
 
-  /* Hover swap only for our default car spare-parts banner */
   #Banner-{{ section.id }} .banner__media--car-hover {
     position: relative;
     overflow: hidden;
@@ -52,7 +51,6 @@
     opacity: 1;
   }
 
-  /* On touch devices (no hover), just show base image */
   @media (hover: none) {
     #Banner-{{ section.id }} .banner__media--car-hover .banner__hover {
       display: none;
