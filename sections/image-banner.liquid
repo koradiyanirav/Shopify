@@ -27,6 +27,37 @@
   #Banner-{{ section.id }}::after {
     opacity: {{ section.settings.image_overlay_opacity | divided_by: 100.0 }};
   }
+
+  /* Hover swap only for our default car spare-parts banner */
+  #Banner-{{ section.id }} .banner__media--car-hover {
+    position: relative;
+    overflow: hidden;
+  }
+
+  #Banner-{{ section.id }} .banner__media--car-hover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #Banner-{{ section.id }} .banner__media--car-hover .banner__hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  #Banner-{{ section.id }} .banner__media--car-hover:hover .banner__hover {
+    opacity: 1;
+  }
+
+  /* On touch devices (no hover), just show base image */
+  @media (hover: none) {
+    #Banner-{{ section.id }} .banner__media--car-hover .banner__hover {
+      display: none;
+    }
+  }
 {%- endstyle -%}
 
 {%- liquid
@@ -83,12 +114,19 @@
       }}
     </div>
   {%- elsif section.settings.image_2 == blank -%}
-    <div class="banner__media media{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="banner__media media banner__media--car-hover{% if section.settings.image == blank and section.settings.image_2 == blank %} placeholder{% endif %}{% if section.settings.image_2 != blank %} banner__media-half{% endif %}{% if section.settings.image_behavior != 'none' %} animate--{{ section.settings.image_behavior }}{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       <img
         src="{{ 'car-spare-parts-banner.png' | asset_url }}"
         alt="Premium car spare parts banner"
         loading="lazy"
-        class="banner__media-image"
+        class="banner__base"
+      >
+      <img
+        src="{{ 'car-spare-parts-banner-hover.png' | asset_url }}"
+        alt=""
+        loading="lazy"
+        class="banner__hover"
+        aria-hidden="true"
       >
     </div>
   {%- endif -%}
