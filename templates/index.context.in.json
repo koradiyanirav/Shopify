@@ -12,5 +12,13 @@
     "market": "in"
   },
   "parent": "index.json",
-  "sections": {}
+  "sections": {
+    "image_banner": {
+      "settings": {
+        "image": "shopify://shop_images/auto-parts-banner-audi-mercedes-bmw.png",
+        "image_2": "shopify://shop_images/theme_cover_image.jpg"
+      },
+      "blocks": {}
+    }
+  }
 }
