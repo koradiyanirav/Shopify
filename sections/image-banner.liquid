@@ -214,24 +214,20 @@
   </div>
 </div> {% endcomment %}
 <div class="hidden duration-200 ease-linear" data-carousel-item>
-            <img src="/assets/carousel-1.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
-        <!-- Item 2 -->
-        <div class="hidden duration-200 ease-linear" data-carousel-item>
-            <img src="/assets/carousel-2.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
-        <!-- Item 3 -->
-        <div class="hidden duration-200 ease-linear" data-carousel-item="active">
-            <img src="/assets/carousel-3.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
-        <!-- Item 4 -->
-        <div class="hidden duration-200 ease-linear" data-carousel-item>
-            <img src="/assets/carousel-4.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
-        <!-- Item 5 -->
-        <div class="hidden duration-200 ease-linear" data-carousel-item>
-            <img src="/assets/carousel-5.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="...">
-        </div>
+  <img src="{{ 'carousel-1.svg' | asset_url }}" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 1">
+</div>
+<div class="hidden duration-200 ease-linear" data-carousel-item>
+  <img src="{{ 'carousel-2.svg' | asset_url }}" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 2">
+</div>
+<div class="hidden duration-200 ease-linear" data-carousel-item="active">
+  <img src="{{ 'carousel-3.svg' | asset_url }}" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 3">
+</div>
+<div class="hidden duration-200 ease-linear" data-carousel-item>
+  <img src="{{ 'carousel-4.svg' | asset_url }}" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 4">
+</div>
+<div class="hidden duration-200 ease-linear" data-carousel-item>
+  <img src="{{ 'carousel-5.svg' | asset_url }}" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 5">
+</div>
 {% schema %}
 {
   "name": "t:sections.image-banner.name",
