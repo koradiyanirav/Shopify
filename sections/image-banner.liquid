@@ -61,7 +61,7 @@
 {%- endstyle -%}
 
 <div id="animation-carousel-{{ section.id }}" class="relative w-full" data-carousel="static">
-  <div class="relative h-56 overflow-hidden rounded-lg md:h-[780px]">
+  <div class="relative h-56 overflow-hidden rounded-lg md:h-[580px]">
     <div class="duration-200 ease-linear" data-carousel-item>
       <img src="{{ 'carousel-1.svg' | asset_url }}" width="1920" height="600" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 1">
     </div>
@@ -90,6 +90,13 @@
       <span class="sr-only">Next</span>
     </span>
   </button>
+  <div class="absolute z-30 flex -translate-x-1/2 left-1/2 bottom-5 space-x-3 rtl:space-x-reverse" data-carousel-dots>
+    <button type="button" class="w-3 h-3 rounded-full bg-white/90 border border-white/70" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+    <button type="button" class="w-3 h-3 rounded-full bg-white/50 border border-white/60" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+    <button type="button" class="w-3 h-3 rounded-full bg-white/50 border border-white/60" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+    <button type="button" class="w-3 h-3 rounded-full bg-white/50 border border-white/60" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+    <button type="button" class="w-3 h-3 rounded-full bg-white/50 border border-white/60" aria-current="false" aria-label="Slide 5" data-carousel-slide-to="4"></button>
+  </div>
 </div>
 <script>
   (() => {
@@ -99,6 +106,7 @@
     const slides = Array.from(root.querySelectorAll('[data-carousel-item]'));
     const prevBtn = root.querySelector('[data-carousel-prev]');
     const nextBtn = root.querySelector('[data-carousel-next]');
+    const dotButtons = Array.from(root.querySelectorAll('[data-carousel-slide-to]'));
     if (!slides.length) return;
 
     let index = 0;
@@ -107,6 +115,12 @@
       index = (nextIndex + slides.length) % slides.length;
       slides.forEach((slide, i) => {
         slide.classList.toggle('hidden', i !== index);
+      });
+      dotButtons.forEach((dot, i) => {
+        const active = i === index;
+        dot.setAttribute('aria-current', active ? 'true' : 'false');
+        dot.classList.toggle('bg-white/90', active);
+        dot.classList.toggle('bg-white/50', !active);
       });
     };
     const restartAutoSlide = () => {
@@ -123,6 +137,14 @@
     nextBtn?.addEventListener('click', () => {
       setActive(index + 1);
       restartAutoSlide();
+    });
+    dotButtons.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const target = Number(dot.getAttribute('data-carousel-slide-to'));
+        if (Number.isNaN(target)) return;
+        setActive(target);
+        restartAutoSlide();
+      });
     });
   })();
 </script>
