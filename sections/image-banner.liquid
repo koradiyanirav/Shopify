@@ -60,21 +60,21 @@
   }
 {%- endstyle -%}
 
-<div id="animation-carousel" class="relative w-full" data-carousel="static">
+<div id="animation-carousel-{{ section.id }}" class="relative w-full" data-carousel="static">
   <div class="relative h-56 overflow-hidden rounded-lg md:h-[1080px]">
     <div class="duration-200 ease-linear" data-carousel-item>
       <img src="{{ 'carousel-1.svg' | asset_url }}" width="1920" height="600" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 1">
     </div>
-    <div class="duration-200 ease-linear" data-carousel-item>
+    <div class="hidden duration-200 ease-linear" data-carousel-item>
       <img src="{{ 'carousel-2.svg' | asset_url }}" width="1920" height="600" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 2">
     </div>
-    <div class="duration-200 ease-linear" data-carousel-item="active">
+    <div class="hidden duration-200 ease-linear" data-carousel-item>
       <img src="{{ 'carousel-3.svg' | asset_url }}" width="1920" height="600" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 3">
     </div>
-    <div class="duration-200 ease-linear" data-carousel-item>
+    <div class="hidden duration-200 ease-linear" data-carousel-item>
       <img src="{{ 'carousel-4.svg' | asset_url }}" width="1920" height="600" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 4">
     </div>
-    <div class="duration-200 ease-linear" data-carousel-item>
+    <div class="hidden duration-200 ease-linear" data-carousel-item>
       <img src="{{ 'carousel-5.svg' | asset_url }}" width="1920" height="600" class="absolute block w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Carousel 5">
     </div>
   </div>
@@ -91,6 +91,29 @@
     </span>
   </button>
 </div>
+<script>
+  (() => {
+    const root = document.getElementById('animation-carousel-{{ section.id }}');
+    if (!root) return;
+
+    const slides = Array.from(root.querySelectorAll('[data-carousel-item]'));
+    const prevBtn = root.querySelector('[data-carousel-prev]');
+    const nextBtn = root.querySelector('[data-carousel-next]');
+    if (!slides.length) return;
+
+    let index = 0;
+    const setActive = (nextIndex) => {
+      index = (nextIndex + slides.length) % slides.length;
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('hidden', i !== index);
+      });
+    };
+
+    setActive(0);
+    prevBtn?.addEventListener('click', () => setActive(index - 1));
+    nextBtn?.addEventListener('click', () => setActive(index + 1));
+  })();
+</script>
 
 {% schema %}
 {
