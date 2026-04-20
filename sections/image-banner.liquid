@@ -119,7 +119,7 @@
       dotButtons.forEach((dot, i) => {
         const active = i === index;
         dot.setAttribute('aria-current', active ? 'true' : 'false');
-        dot.classList.toggle('bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800', active);
+        dot.classList.toggle('bg-white/100', active);
         dot.classList.toggle('bg-white/50', !active);
       });
     };
