@@ -120,7 +120,7 @@
         const active = i === index;
         dot.setAttribute('aria-current', active ? 'true' : 'false');
         dot.classList.toggle('bg-red-500', active);
-        dot.classList.toggle('bg-black', !active);
+        dot.classList.toggle('bg-black-100', !active);
       });
     };
     const restartAutoSlide = () => {
