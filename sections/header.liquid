@@ -61,30 +61,147 @@
       assign localization_forms = true
     endif
   -%}
-  <div class="cart order-2 md:order-none flex items-center gap-3 ...">
-    <details class="relative group">
-      <summary class="flex items-center gap-2 cursor-pointer ...">
-        <!-- round user icon -->
-        ...
-        <span class="hidden md:inline ...">
-          {% if customer %} {{ 'Account' | upcase }} {% else %} {{ 'Login' | upcase }} {% endif %}
-        </span>
-      </summary>
-      <div class="absolute right-0 mt-2 w-44 ...">
-        {% if customer %}
-          <a href="/account">My account</a>
-          <a href="/account/orders">Orders</a>
-          <form method="post" action="/account/logout">...Log out...</form>
-        {% else %}
-          <a href="/account/login">Login</a>
-          <a href="/account/register">Create account</a>
-        {% endif %}
-      </div>
-    </details>
-    <a href="/cart" class="flex items-center gap-1 ...">
-      <!-- cart icon + CART text -->
-    </a>
-  </div>
+<nav
+    class="navbar sticky top-0 left-0 z-[100%] flex flex-col gap-2 md:flex-row md:items-center md:justify-between w-full bg-white text-slate-900 border-b border-gray-200 shadow-sm px-3 py-2 md:px-4 lg:px-6 h-auto md:h-16">
+    <div class="flex items-center gap-2 w-full md:w-auto">
+      <img
+        src="{{ 'pmlogo.png' | asset_url }}"
+        alt="Patel Motors logo"
+        width="40"
+        height="40"
+        class="w-10 h-10 rounded-md"
+      />
+      <h2 class="text-lg font-semibold tracking-tight">Patel Motors</h2>
+    </div>
+
+    <div
+      class="links order-3 md:order-none flex flex-wrap justify-start gap-y-2 gap-x-4 mt-1 w-full text-[11px] uppercase font-medium tracking-[0.06em]
+             md:w-auto md:flex-nowrap md:items-center md:gap-4 md:pl-5 md:mt-0 md:text-[12px]
+             lg:gap-[18px] lg:pl-8 lg:text-[13px]"
+    >
+      <a
+        class="relative text-inherit no-underline hover:text-blue-600 transition-colors duration-200 underline-offset-4 hover:underline decoration-2 decoration-blue-600"
+        href="/collections/all"
+      >
+        SHOP ALL
+      </a>
+      <a
+        class="relative text-inherit no-underline hover:text-blue-600 transition-colors duration-200 underline-offset-4 hover:underline decoration-2 decoration-blue-600"
+        href="/collections/all"
+      >
+        FILTERS
+      </a>
+      <a
+        class="relative text-inherit no-underline hover:text-blue-600 transition-colors duration-200 underline-offset-4 hover:underline decoration-2 decoration-blue-600"
+        href="/collections/engine-parts"
+      >
+        ENGINE PARTS
+      </a>
+      <a
+        class="relative text-inherit no-underline hover:text-blue-600 transition-colors duration-200 underline-offset-4 hover:underline decoration-2 decoration-blue-600"
+        href="/collections/brake-parts"
+      >
+        BRAKE PARTS
+      </a>
+      <a
+        class="relative text-inherit no-underline hover:text-blue-600 transition-colors duration-200 underline-offset-4 hover:underline decoration-2 decoration-blue-600"
+        href="/collections/suspension"
+      >
+        SUSPENSION
+      </a>
+      <a
+        class="relative text-inherit no-underline hover:text-blue-600 transition-colors duration-200 underline-offset-4 hover:underline decoration-2 decoration-blue-600"
+        href="/collections/electrical"
+      >
+        ELECTRICAL
+      </a>
+      <a
+        class="relative text-inherit no-underline hover:text-blue-600 transition-colors duration-200 underline-offset-4 hover:underline decoration-2 decoration-blue-600"
+        href="/collections/accessories"
+      >
+        ACCESSORIES
+      </a>
+      <a
+        class="relative text-inherit no-underline hover:text-blue-600 transition-colors duration-200 underline-offset-4 hover:underline decoration-2 decoration-blue-600"
+        href="/collections/new-arrivals"
+      >
+        NEW ARRIVALS
+      </a>
+    </div>
+
+    <div
+      class="cart order-2 md:order-none flex items-center gap-3 text-[11px] uppercase font-medium tracking-[0.06em] ml-auto
+             md:text-[12px] md:gap-4"
+    >
+      {%- comment -%} OnePlus-style account dropdown {%- endcomment -%}
+      <details
+        class="relative group"
+      >
+        <summary
+          class="flex items-center gap-2 cursor-pointer list-none text-slate-900 hover:text-blue-600 transition-colors duration-200"
+        >
+          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 bg-white shadow-sm">
+            <!-- user icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Z" />
+              <path d="M5.5 20.5a6.5 6.5 0 0 1 13 0" />
+            </svg>
+          </span>
+          <span class="hidden md:inline tracking-[0.12em] text-[11px]">
+            {% if customer %} {{ 'Account' | upcase }} {% else %} {{ 'Login' | upcase }} {% endif %}
+          </span>
+        </summary>
+        <div
+          class="absolute right-0 mt-2 w-44 rounded-md border border-slate-100 bg-white py-2 shadow-lg ring-1 ring-black/5 text-[11px] normal-case text-slate-800 z-50"
+        >
+          {% if customer %}
+            <a href="/account" class="block px-3 py-1.5 hover:bg-slate-50">My account</a>
+            <a href="/account/orders" class="block px-3 py-1.5 hover:bg-slate-50">Orders</a>
+            <form method="post" action="/account/logout" class="mt-1 border-t border-slate-100">
+              <button type="submit" class="block w-full text-left px-3 py-1.5 text-red-600 hover:bg-red-50">
+                Log out
+              </button>
+            </form>
+          {% else %}
+            <a href="/account/login" class="block px-3 py-1.5 hover:bg-slate-50">Login</a>
+            <a href="/account/register" class="block px-3 py-1.5 hover:bg-slate-50">Create account</a>
+          {% endif %}
+        </div>
+      </details>
+
+      <a
+        href="/cart"
+        class="flex items-center gap-1 text-slate-900 no-underline hover:text-blue-600 transition-colors duration-200"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="9" cy="20" r="1.5" />
+          <circle cx="17" cy="20" r="1.5" />
+          <path d="M3 4h2l2.4 9.6A1.5 1.5 0 0 0 8.86 15H18a1.5 1.5 0 0 0 1.46-1.12L21 8H7.2" />
+        </svg>
+        <span>CART</span>
+      </a>
+    </div>
+</nav>
 {%- if section.settings.sticky_header_type != 'none' -%}
 </sticky-header>
 {%- else -%}
